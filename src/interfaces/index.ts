@@ -4,7 +4,7 @@ export interface IProductListItem {
   price: number,
   description: string,
   category: string,
-  imageLink: string,
+  image: string,
   rating: {
     rate: number,
     count: number

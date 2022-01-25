@@ -1,4 +1,4 @@
-import { View, Text, FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
+import { View, Text, FlatList, ListRenderItemInfo, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { IProductListItem } from '../interfaces';
@@ -22,14 +22,25 @@ const HomeScreen = () => {
     }
   }
 
+  const navigateToDetailProduct = (product: IProductListItem) => {
+    navigation.navigate("DetailProductScreen", {
+      product: product
+    })
+  }
+
   const renderItem = (renderItemInfo: ListRenderItemInfo<IProductListItem>) => {
     const { item, index } = renderItemInfo;
     return (
-      <View style={styles.item}>
-        <Text>Title: {item.title}</Text>
-        <Text>Price: {item.price}</Text>
-        <Text>Rating: {item.rating.rate}</Text>
-      </View>
+      <TouchableOpacity onPress={() => navigateToDetailProduct(item)}>
+        <View style={styles.item}>
+          <Image style={styles.imageItem} source={{ uri: item.image }} />
+          <View style={styles.productInfo}>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text>Price: ${item.price}</Text>
+            <Text>Rating: {item.rating.rate}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
     )
   }
 
@@ -44,13 +55,33 @@ const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  base: {
+    backgroundColor: '#f2f2f2'
+  },
   item: {
+    display: 'flex',
+    flexDirection: 'row',
     borderColor: '#000',
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderRadius: 20,
     borderStyle: 'solid',
-    padding: 10,
-    margin: 10
+    padding: 20,
+    margin: 10,
+    backgroundColor: '#FFFFFF',
+    elevation: 10
+  },
+  productInfo: {
+    width: "60%",
+    padding: 10
+  },
+  imageItem: {
+    aspectRatio: 0.9,
+    marginRight: 10,
+    resizeMode: 'contain'
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold'
   }
 })
 
