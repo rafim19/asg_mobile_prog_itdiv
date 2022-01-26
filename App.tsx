@@ -3,13 +3,17 @@ import {
   SafeAreaView,
   StyleSheet,
 } from 'react-native';
+import { Provider } from 'react-redux';
 import AppNavigation from './src/naviagtion';
+import { store } from './src/store';
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.base}>
-      <AppNavigation />
-    </SafeAreaView>
+      <SafeAreaView style={styles.base}>
+        <Provider store={store}>
+          <AppNavigation />
+        </Provider>
+      </SafeAreaView>
   );
 };
 
