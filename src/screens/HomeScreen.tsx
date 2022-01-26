@@ -22,16 +22,16 @@ const HomeScreen = () => {
     }
   }
 
-  const navigateToDetailProduct = (product: IProductListItem) => {
+  const navigateToDetailProduct = (productId: number) => {
     navigation.navigate("DetailProductScreen", {
-      product: product
+      productId: productId
     })
   }
 
   const renderItem = (renderItemInfo: ListRenderItemInfo<IProductListItem>) => {
     const { item, index } = renderItemInfo;
     return (
-      <TouchableOpacity onPress={() => navigateToDetailProduct(item)}>
+      <TouchableOpacity onPress={() => navigateToDetailProduct(item.id)}>
         <View style={styles.item}>
           <Image style={styles.imageItem} source={{ uri: item.image }} />
           <View style={styles.productInfo}>
@@ -56,7 +56,7 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   base: {
-    backgroundColor: '#f2f2f2'
+    backgroundColor: '#FFF1BD'
   },
   item: {
     display: 'flex',
