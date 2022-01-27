@@ -1,8 +1,7 @@
-import { IProductListItem } from "../interfaces";
-
 export type RootStackParamList = {
   HomeScreen: undefined,
-  DetailProductScreen: {
-    productId: number
-  }
+  DetailUserScreen: {
+    userId: string
+  },
+  FavouriteScreen: undefined
 }
